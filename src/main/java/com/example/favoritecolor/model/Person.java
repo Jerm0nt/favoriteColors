@@ -1,12 +1,23 @@
 package com.example.favoritecolor.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 
 @Entity
 public class Person {
+  public Person(int id, String name, String lastName, int zipCode, String city, Color color) {
+    this.id = id;
+    this.name = name;
+    this.lastName = lastName;
+    this.zipCode = zipCode;
+    this.city = city;
+    this.color = color;
+  }
+
+  public Person() {
+
+  }
 
   @javax.persistence.Id
   @Id
@@ -21,7 +32,6 @@ public class Person {
 
   private String city;
 
-  @OneToOne
   private Color color;
 
   public String getName() {

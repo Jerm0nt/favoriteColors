@@ -10,4 +10,6 @@ public interface IPersonService {
   ArrayList<Person> findAll() throws IllegalArgumentException;
 
   Person findPerson(Integer id) throws ObjectNotFoundException;
+
+  ArrayList<Person> findPersonsByColor(String color_name) throws IllegalArgumentException;
 }

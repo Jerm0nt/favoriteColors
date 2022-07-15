@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-public class PersonService implements IPersonService{
+public class PersonServiceH2 implements IPersonService{
 
   @Autowired
   private PersonRepository repository;
@@ -24,5 +24,10 @@ public class PersonService implements IPersonService{
   public Person findPerson(Integer id) throws ObjectNotFoundException {
     try{return repository.findById(id).get();}
     catch(Exception e){throw new ObjectNotFoundException(id, "User mit ID "+id+" nicht gefunden");}
+  }
+
+  @Override
+  public ArrayList<Person> findPersonsByColor(String color_name) throws IllegalArgumentException {
+    return null;
   }
 }

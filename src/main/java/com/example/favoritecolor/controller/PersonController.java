@@ -4,6 +4,7 @@ import com.example.favoritecolor.model.Person;
 import com.example.favoritecolor.services.IPersonService;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping(value="/persons")
 public class PersonController {
+  @Qualifier("personServiceCSV")
   @Autowired
   private IPersonService service;
 
@@ -38,6 +40,17 @@ public class PersonController {
       return new ResponseEntity<>(list, HttpStatus.OK);
     }
     catch (ObjectNotFoundException e){
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+  }
+
+  @GetMapping(value = "/color/{color}", produces = {"application/json"})
+  public ResponseEntity<ArrayList<Person>> getPersonsByColor(@PathVariable(value = "color") String color) {
+    try{
+      ArrayList<Person> list = service.findPersonsByColor(color);
+      return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+    catch (IllegalArgumentException e){
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
   }
