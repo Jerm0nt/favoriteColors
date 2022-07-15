@@ -23,11 +23,26 @@ public class PersonServiceH2 implements IPersonService{
   @Override
   public Person findPerson(Integer id) throws ObjectNotFoundException {
     try{return repository.findById(id).get();}
-    catch(Exception e){throw new ObjectNotFoundException(id, "User mit ID "+id+" nicht gefunden");}
+    catch(Exception e){throw new ObjectNotFoundException(id, "User not found");}
   }
 
   @Override
   public ArrayList<Person> findPersonsByColor(String color_name) throws IllegalArgumentException {
-    return null;
+    ArrayList<Person> personsByColor = new ArrayList<>();
+    try{
+      ArrayList<Person> allPersons = (ArrayList<Person>) repository.findAll();
+      for (Person person:allPersons) {
+        if(person.getColor().equals(color_name)){
+          personsByColor.add(person);
+        }
+      }
+      if (personsByColor.isEmpty()){
+        throw new IllegalArgumentException("User not found with color "+color_name);
+      }else{
+        return personsByColor;
+      }
+    }catch (Exception e){
+      throw new IllegalArgumentException("No persons found!");
+    }
   }
 }

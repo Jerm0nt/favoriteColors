@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS person;
 CREATE TABLE person (
                        id   INTEGER      NOT NULL AUTO_INCREMENT,
                        name VARCHAR(128) NOT NULL,

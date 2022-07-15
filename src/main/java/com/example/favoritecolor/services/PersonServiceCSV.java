@@ -45,31 +45,42 @@ public class PersonServiceCSV implements IPersonService{
   }
   @Override
   public ArrayList<Person> findAll() throws IllegalArgumentException {
-    return persons;
+    if(persons.isEmpty()){
+     throw new IllegalArgumentException("Person Collection must not be null!");
+    }else {
+      return persons;
+    }
   }
 
   @Override
   public Person findPerson(Integer id) throws ObjectNotFoundException {
-    for (Person person:persons) {
-      if (person.getId()==id){
-        return person;
+    if (!persons.isEmpty()) {
+      for (Person person : persons) {
+        if (person.getId() == id) {
+          return person;
+        }
       }
     }
-    throw new ObjectNotFoundException(id, "Person konnte nicht gefunden werden!");
+    throw new ObjectNotFoundException(id, "User not found");
   }
 
   @Override
   public ArrayList<Person> findPersonsByColor(String color_name) throws IllegalArgumentException {
     ArrayList<Person> personsByColor = new ArrayList<>();
-    for (Person person : persons) {
-      if (person.getColor().equals(color_name)){
-        personsByColor.add(person);
+    try {
+      for (Person person : persons) {
+        if (person.getColor().equals(color_name)){
+          personsByColor.add(person);
+        }
       }
+      if(personsByColor.isEmpty()){
+        throw new IllegalArgumentException("User not found with color "+color_name);
+      }else{
+        return personsByColor;
+      }
+    } catch (Exception e){
+      throw new IllegalArgumentException("No persons found!");
     }
-    if(personsByColor.isEmpty()){
-      throw new IllegalArgumentException("Keine Personen mit dieser Farbe!");
-    }else{
-      return personsByColor;
-    }
+
   }
 }

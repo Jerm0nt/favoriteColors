@@ -32,7 +32,25 @@ public class Person {
 
   private String city;
 
+  @Basic
+  private int colorId;
+
+  @Transient
   private Color color;
+
+ @PostLoad
+ void fillTransient() {
+   if (colorId > 0) {
+     this.color = Color.valueOfId(colorId);
+   }
+ }
+
+ @PrePersist
+ void fillPersistent() {
+   if (color != null){
+     this.colorId = color.getId();
+   }
+ }
 
   public String getName() {
     return name;
@@ -80,6 +98,10 @@ public class Person {
 
   public void setColor(Color color) {
     this.color = color;
+  }
+
+  public void setColor(int colorId){
+    this.color = Color.valueOfId(colorId);
   }
 }
 
