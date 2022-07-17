@@ -30,6 +30,6 @@ Meine Lösung für die Assecor-Coding-Challenge. Ich habe Spring Boot benutzt. D
 - [] * Implementieren Sie eine zusätzliche Methode POST/ Personen, die eine zusätzliche Aufzeichnung zur Datenquelle hinzufügen
 
 
-- [x]* Anbindung einer zweiten Datenquelle (z.B. Datenbank via Entity Framework)
+- [x] * Anbindung einer zweiten Datenquelle (z.B. Datenbank via Entity Framework)
 - Ich habe als zweite Datenquelle eine lokale H2-Datenbank etabliert. Diese wird zu Programmstart erschaffen durch die 'schema.sql'-Datei und den entsprechenden Einstellungen in der 'application.properties'. Befüllt wird sie mit den Daten aus der Ursprungs .csv durch 'data.sql'.
 - Um die H2-Datenbank zu nutzen, muss im 'PersonConfiguration.java' in der Person-Service-Bean der Rückgabe-Wert auf die entsprechende Klasse geändert werden.
