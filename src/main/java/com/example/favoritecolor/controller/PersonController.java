@@ -2,8 +2,6 @@ package com.example.favoritecolor.controller;
 
 import com.example.favoritecolor.model.Person;
 import com.example.favoritecolor.services.PersonService;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
