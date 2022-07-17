@@ -6,6 +6,7 @@ Meine Lösung für die Assecor-Coding-Challenge. Ich habe Spring Boot benutzt. D
 
 - [x] **1. Die CSV Datei wurde eingelesen, und wird programmintern durch eine dem Schema entsprechende Modellklasse repräsentiert.** 
 - Die CSV-Datei wird in `PersonServiceCSV.java` in der init()-Methode zu Programmstart eingelesen. Von da an arbeitet das System mit einer ArrayList als Datengrundlage.
+- Die Fehlerhaften Zeilen werden ignoriert
 - Die Personen werden durch die `Personen.java`-Klasse repräsentiert.
 
 - [x] **2. Der Zugriff auf die Datensätze so abstrahiert, dass eine andere Datenquelle angebunden werden kann, ohne den Aufruf anpassen zu müssen.**
