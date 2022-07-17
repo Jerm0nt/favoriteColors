@@ -33,7 +33,7 @@ public class PersonServiceCSV implements PersonService {
           try {
             int plz = Integer.valueOf(values[2].substring(1,6));
             String city = values[2].substring(6).trim();
-            persons.add(new Person(index, values[0], values[1], plz, city, Color.valueOfId(Integer.valueOf(values[3].trim()))));
+            persons.add(new Person(index, values[1], values[0], plz, city, Color.valueOfId(Integer.valueOf(values[3].trim()))));
           }catch(Exception e){
             System.out.print(e);
           }

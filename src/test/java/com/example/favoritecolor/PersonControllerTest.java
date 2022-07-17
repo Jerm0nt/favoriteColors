@@ -6,7 +6,6 @@ import com.example.favoritecolor.model.Person;
 import com.example.favoritecolor.services.PersonService;
 import org.hamcrest.Matchers;
 import org.hibernate.ObjectNotFoundException;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @WebMvcTest(PersonController.class)
@@ -38,6 +38,10 @@ public class PersonControllerTest {
   private Person person1;
   private Person person2;
   private Person person3;
+  private Person person4;
+
+  private String person4JSONString;
+  private String person4BadJSONString;
 
   private List<Person> personList;
 
@@ -46,6 +50,14 @@ public class PersonControllerTest {
     person1 = new Person(1, "max", "mustermann", 88471, "laupheim", Color.BLAU);
     person2 = new Person(2, "maximiliane", "musterfrau", 12347, "berlin-neukölln", Color.ROT);
     person3 = new Person(3, "kim", "mustermensch", 13086, "berlin-weißensee", Color.TÜRKIS);
+    person4 = new Person(4, "newkid", "intown", 10707,  "berlin-wilmersdorf", Color.TÜRKIS);
+    person4JSONString = "{\n" +
+      "    \"name\": \" newkid\",\n" +
+      "    \"lastName\": \" intown\",\n" +
+      "    \"zipCode\": 10707,\n" +
+      "    \"city\": \"berlin-wilmersdorf\",\n" +
+      "    \"color\": \"türkis\"\n" +
+      "}";
     personList = new ArrayList<>();
     personList.add(person1);
     personList.add(person2);
@@ -113,6 +125,18 @@ public class PersonControllerTest {
   }
 
   @Test
+  void shouldReturnPersonsPersonByColor() throws Exception {
+    ArrayList<Person> redPersons = new ArrayList<>();
+    redPersons.add(person2);
+    when(service.findPersonsByColor("rot")).thenReturn(redPersons);
+
+    this.mockMvc.perform(MockMvcRequestBuilders.get("/persons/color/rot"))
+      .andExpect(MockMvcResultMatchers.status().isOk())
+      .andExpect(MockMvcResultMatchers.jsonPath("$.size()", Matchers.is(1)))
+      .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value(person2.getName()))
+      .andExpect(MockMvcResultMatchers.jsonPath("$[0].id").value(person2.getId()));
+  }
+  @Test
   void shouldReturnNotFoundHasColorWhichNoPersonHasPersonByColor() throws Exception {
     when(service.findPersonsByColor("grün")).thenThrow(IllegalArgumentException.class);
 
@@ -133,4 +157,7 @@ public class PersonControllerTest {
     this.mockMvc.perform(MockMvcRequestBuilders.get("/persons/color/grün").accept("application/xml"))
       .andExpect(MockMvcResultMatchers.status().isNotAcceptable());
   }
+
+
+
 }

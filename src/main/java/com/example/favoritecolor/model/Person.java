@@ -1,5 +1,6 @@
 package com.example.favoritecolor.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
@@ -36,6 +37,7 @@ public class Person {
   private int colorId;
 
   @Transient
+  @JsonProperty
   private Color color;
 
  @PostLoad
@@ -103,6 +105,8 @@ public class Person {
   public void setColor(int colorId){
     this.color = Color.valueOfId(colorId);
   }
+
+  public void setColor(String colorName) { this.color = Color.valueOfName(colorName);}
 }
 
 
