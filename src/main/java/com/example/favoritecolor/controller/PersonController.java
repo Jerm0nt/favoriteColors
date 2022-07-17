@@ -1,8 +1,7 @@
 package com.example.favoritecolor.controller;
 
 import com.example.favoritecolor.model.Person;
-import com.example.favoritecolor.services.IPersonService;
-import com.example.favoritecolor.services.PersonServiceH2;
+import com.example.favoritecolor.services.PersonService;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,10 +17,11 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping(value="/persons")
 public class PersonController {
-  @Qualifier("personServiceCSV")
+  private PersonService service;
   @Autowired
-  private IPersonService service;
-
+  public PersonController(PersonService service) {
+    this.service = service;
+  }
 
   @GetMapping(value="/{id}", produces = {"application/json"})
   public ResponseEntity<Person> getPerson(@PathVariable(value="id") Integer id){
@@ -34,13 +34,13 @@ public class PersonController {
     }
   }
 
-  @GetMapping(value="/", produces = {"application/json"})
+  @GetMapping(produces = {"application/json"})
   public ResponseEntity<ArrayList<Person>> getAllPersons(){
     try{
       ArrayList<Person> list= service.findAll();
       return new ResponseEntity<>(list, HttpStatus.OK);
     }
-    catch (ObjectNotFoundException e){
+    catch (IllegalArgumentException e){
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
   }

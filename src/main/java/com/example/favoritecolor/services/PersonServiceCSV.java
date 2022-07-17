@@ -14,15 +14,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 @Service
-public class PersonServiceCSV implements IPersonService{
+public class PersonServiceCSV implements PersonService {
 
   private ArrayList<Person> persons;
+  private String dataPath = "src/main/resources/sample-input.csv";
 
+  public void setDataPath(String dataPath) {
+    this.dataPath = dataPath;
+  }
   @PostConstruct
   public void init() throws FileNotFoundException {
     persons = new ArrayList<>();
-    //File file = new File(getClass().getResource("sample-input.csv").getFile());
-    try (CSVReader csvReader = new CSVReader(new FileReader("src/main/resources/sample-input.csv"))){
+    try (CSVReader csvReader = new CSVReader(new FileReader(dataPath))){
       String[] values = null;
       int index = 1;
       while ((values = csvReader.readNext()) != null){

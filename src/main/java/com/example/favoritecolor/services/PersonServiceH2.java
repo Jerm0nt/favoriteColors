@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-public class PersonServiceH2 implements IPersonService{
+public class PersonServiceH2 implements PersonService {
 
   @Autowired
   private PersonRepository repository;

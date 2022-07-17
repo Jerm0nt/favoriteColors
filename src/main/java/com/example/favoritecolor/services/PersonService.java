@@ -5,7 +5,7 @@ import org.hibernate.ObjectNotFoundException;
 
 import java.util.ArrayList;
 
-public interface IPersonService {
+public interface PersonService {
 
   ArrayList<Person> findAll() throws IllegalArgumentException;
 
