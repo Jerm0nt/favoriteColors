@@ -1,0 +1,8 @@
+com/example/favoritecolor/repository/PersonRepository.class
+com/example/favoritecolor/controller/PersonController.class
+com/example/favoritecolor/services/IPersonService.class
+com/example/favoritecolor/FavoritecolorApplication.class
+com/example/favoritecolor/services/PersonServiceH2.class
+com/example/favoritecolor/model/Color.class
+com/example/favoritecolor/services/PersonServiceCSV.class
+com/example/favoritecolor/model/Person.class
