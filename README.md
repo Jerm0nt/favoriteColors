@@ -27,7 +27,7 @@ Meine Lösung für die Assecor-Coding-Challenge. Ich habe Spring Boot benutzt. D
 - [x] * Implementierung als MSBuild Projekt für kontinuierliche Integration auf TFS (C#/.NET) oder als Maven/Gradle Projekt (Java)
 - Das System ist als Maven-Projekt implementiert.
 
-- [] * Implementieren Sie eine zusätzliche Methode POST/ Personen, die eine zusätzliche Aufzeichnung zur Datenquelle hinzufügen
+- [ ] * Implementieren Sie eine zusätzliche Methode POST/ Personen, die eine zusätzliche Aufzeichnung zur Datenquelle hinzufügen
 
 
 - [x] * Anbindung einer zweiten Datenquelle (z.B. Datenbank via Entity Framework)
