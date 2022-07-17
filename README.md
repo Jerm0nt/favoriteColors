@@ -18,7 +18,7 @@ Meine Lösung für die Assecor-Coding-Challenge. Ich habe Spring Boot benutzt. D
 - Dies passiert über das 'PersonConfiguration.java'-File in der Person-Service-Bean. der PersonController initialisiert ein Service vom Typ 'PersonServie.java' welcher als Interface realisiert ist und nimmt im Konstruktor die implementierende Klasse entgegen. Standartmäßig ist das im Moment 'PersonServiceCSV.java'. Es steht aber auch 'PersonServiceH2.java' zur Verfügung.
 
 - [x] **5.  Die REST-Schnittstelle ist mit Unit-Tests getestet.**
-- Der Controller ist auf alle 3 geforderten GET-Requests mit Unit-Tests getestet. Diese befinden sich in 'PersonControllerTest.java'. Es handelt sich dabei um insgesam 12 Test (4 pro Request).
+- Der Controller ist auf alle 3 geforderten GET-Requests mit Unit-Tests getestet. Diese befinden sich in (src/main/java/com/example/favoritecolor/controller/PersonController.java). Es handelt sich dabei um insgesam 12 Test (4 pro Request).
 
 - [x] **6.  Die `sample-input.csv` wurde nicht verändert**
 - Check
